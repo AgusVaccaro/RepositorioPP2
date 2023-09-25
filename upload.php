@@ -16,6 +16,7 @@ if ($conn->connect_error) {
 $titulo = $_POST["titulo"];
 $autor = $_POST["autor"];
 $categoria = $_POST["categoria"];
+$carrera = $_POST["carrera"];
 
 // Procesar la carga del archivo
 $archivoNombre = $_FILES["archivo"]["name"];
@@ -23,9 +24,11 @@ $archivoTemporal = $_FILES["archivo"]["tmp_name"];
 $archivoDestino = "uploads/" . $archivoNombre;
 
 if (move_uploaded_file($archivoTemporal, $archivoDestino)) {
-    // Archivo subido con éxito, ahora insertar los datos en la base de datos
-    $sql = "INSERT INTO documentos (titulo, autor, categoria, archivo) VALUES ('$titulo', '$autor', '$categoria', '$archivoNombre')";
+    $fechaCarga = date('Y-m-d H:i:s'); 
 
+    $sql = "INSERT INTO documentos (titulo, autor, categoria, archivo, carrera, fecha_de_carga) VALUES ('$titulo', '$autor', '$categoria', '$archivoNombre', '$carrera', '$fechaCarga')";
+    
+    
     if ($conn->query($sql) === TRUE) {
         echo "Documento cargado y registrado en la base de datos con éxito.";
     } else {
@@ -36,5 +39,7 @@ if (move_uploaded_file($archivoTemporal, $archivoDestino)) {
 }
 
 $conn->close();
+header("Location: documents.php");
+exit;
 
 ?>

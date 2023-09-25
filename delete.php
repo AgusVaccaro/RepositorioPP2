@@ -26,6 +26,6 @@ if (isset($_GET["id"])) {
 
 $conn->close();
 
-echo '<br><a href="documents.php">Volver a la lista de documentos</a>';
-echo '<br><a href="main.php">Volver a página de inicio</a>';
+header("Location: documents.php");
+exit;
 ?>

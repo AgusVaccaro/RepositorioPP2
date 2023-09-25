@@ -34,7 +34,7 @@
                     <a class="nav-link" href="cargardoc.php">Cargar Documento</a>
                 </li>
             </ul>
-        </div>
+        </div>                                                       
     </nav>
     
     <div class="container">
@@ -43,4 +43,4 @@
     </div>
 </body>
 </html>
-
+                               

@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="js/vendor/codemirror/lib/codemirror.css?v=5.1.3">
     <link rel="stylesheet" type="text/css" href="js/vendor/codemirror/addon/hint/show-hint.css?v=5.1.3">
     <link rel="stylesheet" type="text/css" href="js/vendor/codemirror/addon/lint/lint.css?v=5.1.3">
-    <link rel="stylesheet" type="text/css" href="./themes/pmahomme/css/theme.css?v=5.1.3&nocache=1070710011ltr&server=1">
+    <link rel="stylesheet" type="text/css" href="./themes/pmahomme/css/theme.css?v=5.1.3&nocache=1167684285ltr&server=1">
     <link rel="stylesheet" type="text/css" href="./themes/pmahomme/css/printview.css?v=5.1.3" media="print" id="printcss">
     <title>localhost / localhost:3307 | phpMyAdmin 5.1.3</title>
     <script data-cfasync="false" type="text/javascript" src="js/vendor/jquery/jquery.min.js?v=5.1.3"></script>
@@ -56,7 +56,7 @@
 
 <script data-cfasync="false" type="text/javascript">
 // <![CDATA[
-CommonParams.setAll({common_query:"",opendb_url:"index.php?route=/database/structure",lang:"es",server:"1",table:"",db:"",token:"487679484f742537773b39225d405a55",text_dir:"ltr",show_databases_navigation_as_tree:true,pma_text_default_tab:"Examinar",pma_text_left_default_tab:"Estructura",pma_text_left_default_tab2:false,LimitChars:"50",pftext:"P",confirm:true,LoginCookieValidity:"1440",session_gc_maxlifetime:"1440",logged_in:true,is_https:false,rootPath:"/phpmyadmin/",arg_separator:"&",PMA_VERSION:"5.1.3",auth_type:"config",user:"root"});
+CommonParams.setAll({common_query:"",opendb_url:"index.php?route=/database/structure",lang:"es",server:"1",table:"",db:"",token:"217b295c4f6326747937795155387575",text_dir:"ltr",show_databases_navigation_as_tree:true,pma_text_default_tab:"Examinar",pma_text_left_default_tab:"Estructura",pma_text_left_default_tab2:false,LimitChars:"50",pftext:"P",confirm:true,LoginCookieValidity:"1440",session_gc_maxlifetime:"1440",logged_in:true,is_https:false,rootPath:"/phpmyadmin/",arg_separator:"&",PMA_VERSION:"5.1.3",auth_type:"config",user:"root"});
 var firstDayOfCalendar = '0';
 var themeImagePath = '.\/themes\/pmahomme\/img\/';
 var mysqlDocTemplate = '.\/url.php\u003Furl\u003Dhttps\u00253A\u00252F\u00252Fdev.mysql.com\u00252Fdoc\u00252Frefman\u00252F8.0\u00252Fen\u00252F\u002525s.html';
@@ -260,7 +260,7 @@ $(function() {
       </div>
       <div id="pma_navigation_tree" class="list_container synced highlight autoexpand">
 
-  <div class="pma_quick_warp"><div class="drop_list"><button title="Tablas recientes" class="drop_button btn">Reciente</button><ul id="pma_recent_list"><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=repositorio&table=usuarios">`repositorio`.`usuarios`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=repositorio&table=documentos">`repositorio`.`documentos`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=stockropa&table=ropa">`stockropa`.`ropa`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=stockropa&table=usuarios">`stockropa`.`usuarios`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=aaa&table=empleados">`aaa`.`empleados`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=aver&table=ropa">`aver`.`ropa`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=aver&table=usuarios">`aver`.`usuarios`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=stockropa&table=permisos">`stockropa`.`permisos`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=clase&table=permisos">`clase`.`permisos`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=clase&table=user">`clase`.`user`</a></li></ul></div><div class="drop_list"><button title="Tablas favoritas" class="drop_button btn">Favoritas</button><ul id="pma_favorite_list"><li class="warp_link">No existen tablas favoritas.</li></ul></div><div class="clearfloat"></div></div>
+  <div class="pma_quick_warp"><div class="drop_list"><button title="Tablas recientes" class="drop_button btn">Reciente</button><ul id="pma_recent_list"><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=repositorio&table=documentos">`repositorio`.`documentos`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=repositorio&table=alumnos">`repositorio`.`alumnos`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=repositorio&table=usuarios">`repositorio`.`usuarios`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=stockropa&table=ropa">`stockropa`.`ropa`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=stockropa&table=usuarios">`stockropa`.`usuarios`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=aaa&table=empleados">`aaa`.`empleados`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=aver&table=ropa">`aver`.`ropa`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=aver&table=usuarios">`aver`.`usuarios`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=stockropa&table=permisos">`stockropa`.`permisos`</a></li><li class="warp_link"><a href="index.php?route=/table/recent-favorite&db=clase&table=permisos">`clase`.`permisos`</a></li></ul></div><div class="drop_list"><button title="Tablas favoritas" class="drop_button btn">Favoritas</button><ul id="pma_favorite_list"><li class="warp_link">No existen tablas favoritas.</li></ul></div><div class="clearfloat"></div></div>
 
 <div class="clearfloat"></div>
 
@@ -284,7 +284,7 @@ $(function() {
                   <div id="pma_navigation_settings"><div class="page_settings"><form method="post" action="index.php&#x3F;route&#x3D;&#x25;2Fexport&amp;server&#x3D;1" class="config-form disableAjax">
   <input type="hidden" name="tab_hash" value="">
       <input type="hidden" name="check_page_refresh" id="check_page_refresh" value="">
-    <input type="hidden" name="token" value="487679484f742537773b39225d405a55">
+    <input type="hidden" name="token" value="217b295c4f6326747937795155387575">
   <input type="hidden" name="submit_save" value="Navi">
 <ul class="tabs responsivetable row">
       <li><a href="#Navi_panel">Panel de navegación</a></li>
@@ -561,8 +561,8 @@ $.extend(defaultValues, {
                     <span class="hide" id="instructions-1">
                         Presione Enter para ejecutar la consulta                    </span>
                 </div>
-                                                            <div class="message history collapsed hide select"
-                            targetdb="repositorio" targettable="usuarios">
+                                                            <div class="message history collapsed hide"
+                            targetdb="repositorio" targettable="">
                             <div class="action_content">
                     <span class="action collapse">
             Colapsar
@@ -597,7 +597,13 @@ $.extend(defaultValues, {
                             : <span>durante la sesión actual</span>
                     </span>
             </div>
-                            <span class="query">SELECT * FROM `usuarios`</span>
+                            <span class="query">CREATE TABLE alumnos (
+    alumno_id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    apellido VARCHAR(255) NOT NULL,
+    email_institucional VARCHAR(255),
+    carrera VARCHAR(100)
+);</span>
                         </div>
                                             <div class="message history collapsed hide select"
                             targetdb="repositorio" targettable="usuarios">
@@ -638,7 +644,7 @@ $.extend(defaultValues, {
                             <span class="query">SELECT * FROM `usuarios`</span>
                         </div>
                                             <div class="message history collapsed hide select"
-                            targetdb="repositorio" targettable="usuarios">
+                            targetdb="repositorio" targettable="alumnos">
                             <div class="action_content">
                     <span class="action collapse">
             Colapsar
@@ -673,10 +679,50 @@ $.extend(defaultValues, {
                             : <span>durante la sesión actual</span>
                     </span>
             </div>
-                            <span class="query">SELECT * FROM `usuarios`</span>
+                            <span class="query">SELECT * FROM `alumnos`</span>
+                        </div>
+                                            <div class="message history collapsed hide"
+                            targetdb="repositorio" targettable="">
+                            <div class="action_content">
+                    <span class="action collapse">
+            Colapsar
+                    </span>
+                            <span class="action expand">
+            Expandir
+                    </span>
+                            <span class="action requery">
+            Reconsultar
+                    </span>
+                            <span class="action edit">
+            Editar
+                    </span>
+                            <span class="action explain">
+            Explicar
+                    </span>
+                            <span class="action profiling">
+            Perfilando
+                    </span>
+                            <span class="action bookmark">
+            Agregar a favoritos
+                    </span>
+                            <span class="text failed">
+            Falló la consulta
+                    </span>
+                            <span class="text targetdb">
+            Base de datos
+                            : <span>repositorio</span>
+                    </span>
+                            <span class="text query_time">
+            Fecha y hora la consulta
+                            : <span>durante la sesión actual</span>
+                    </span>
+            </div>
+                            <span class="query">INSERT INTO `alumnos` (alumno_id, nombre, apellido, email_institucional, carrera)
+VALUES (&#039;1&#039;, &#039;Agustín&#039;, &#039;Vaccaro&#039;, &#039;44064416@terciariourquiza.edu.ar&#039;, &#039;DS&#039;),
+(&#039;2&#039;, &#039;Axel&#039;, &#039;Menegozzi&#039;, &#039;44732638@terciariourquiza.edu.ar &#039;, &#039;DS&#039;);</span>
                         </div>
                                             <div class="message history collapsed hide select"
-                            targetdb="repositorio" targettable="usuarios">
+                            targetdb="repositorio" targettable="documentos">
                             <div class="action_content">
                     <span class="action collapse">
             Colapsar
@@ -711,7 +757,198 @@ $.extend(defaultValues, {
                             : <span>durante la sesión actual</span>
                     </span>
             </div>
-                            <span class="query">SELECT * FROM `usuarios` WHERE 1;</span>
+                            <span class="query">SELECT * FROM `documentos`</span>
+                        </div>
+                                            <div class="message history collapsed hide"
+                            targetdb="repositorio" targettable="documentos">
+                            <div class="action_content">
+                    <span class="action collapse">
+            Colapsar
+                    </span>
+                            <span class="action expand">
+            Expandir
+                    </span>
+                            <span class="action requery">
+            Reconsultar
+                    </span>
+                            <span class="action edit">
+            Editar
+                    </span>
+                            <span class="action explain">
+            Explicar
+                    </span>
+                            <span class="action profiling">
+            Perfilando
+                    </span>
+                            <span class="action bookmark">
+            Agregar a favoritos
+                    </span>
+                            <span class="text failed">
+            Falló la consulta
+                    </span>
+                            <span class="text targetdb">
+            Base de datos
+                            : <span>repositorio</span>
+                    </span>
+                            <span class="text query_time">
+            Fecha y hora la consulta
+                            : <span>durante la sesión actual</span>
+                    </span>
+            </div>
+                            <span class="query">ALTER TABLE documentos
+ADD carrera VARCHAR(255);</span>
+                        </div>
+                                            <div class="message history collapsed hide select"
+                            targetdb="repositorio" targettable="documentos">
+                            <div class="action_content">
+                    <span class="action collapse">
+            Colapsar
+                    </span>
+                            <span class="action expand">
+            Expandir
+                    </span>
+                            <span class="action requery">
+            Reconsultar
+                    </span>
+                            <span class="action edit">
+            Editar
+                    </span>
+                            <span class="action explain">
+            Explicar
+                    </span>
+                            <span class="action profiling">
+            Perfilando
+                    </span>
+                            <span class="action bookmark">
+            Agregar a favoritos
+                    </span>
+                            <span class="text failed">
+            Falló la consulta
+                    </span>
+                            <span class="text targetdb">
+            Base de datos
+                            : <span>repositorio</span>
+                    </span>
+                            <span class="text query_time">
+            Fecha y hora la consulta
+                            : <span>durante la sesión actual</span>
+                    </span>
+            </div>
+                            <span class="query">SELECT * FROM `documentos`</span>
+                        </div>
+                                            <div class="message history collapsed hide select"
+                            targetdb="repositorio" targettable="documentos">
+                            <div class="action_content">
+                    <span class="action collapse">
+            Colapsar
+                    </span>
+                            <span class="action expand">
+            Expandir
+                    </span>
+                            <span class="action requery">
+            Reconsultar
+                    </span>
+                            <span class="action edit">
+            Editar
+                    </span>
+                            <span class="action explain">
+            Explicar
+                    </span>
+                            <span class="action profiling">
+            Perfilando
+                    </span>
+                            <span class="action bookmark">
+            Agregar a favoritos
+                    </span>
+                            <span class="text failed">
+            Falló la consulta
+                    </span>
+                            <span class="text targetdb">
+            Base de datos
+                            : <span>repositorio</span>
+                    </span>
+                            <span class="text query_time">
+            Fecha y hora la consulta
+                            : <span>durante la sesión actual</span>
+                    </span>
+            </div>
+                            <span class="query">SELECT * FROM `documentos`</span>
+                        </div>
+                                            <div class="message history collapsed hide select"
+                            targetdb="repositorio" targettable="documentos">
+                            <div class="action_content">
+                    <span class="action collapse">
+            Colapsar
+                    </span>
+                            <span class="action expand">
+            Expandir
+                    </span>
+                            <span class="action requery">
+            Reconsultar
+                    </span>
+                            <span class="action edit">
+            Editar
+                    </span>
+                            <span class="action explain">
+            Explicar
+                    </span>
+                            <span class="action profiling">
+            Perfilando
+                    </span>
+                            <span class="action bookmark">
+            Agregar a favoritos
+                    </span>
+                            <span class="text failed">
+            Falló la consulta
+                    </span>
+                            <span class="text targetdb">
+            Base de datos
+                            : <span>repositorio</span>
+                    </span>
+                            <span class="text query_time">
+            Fecha y hora la consulta
+                            : <span>durante la sesión actual</span>
+                    </span>
+            </div>
+                            <span class="query">SELECT * FROM `documentos`</span>
+                        </div>
+                                            <div class="message history collapsed hide select"
+                            targetdb="repositorio" targettable="documentos">
+                            <div class="action_content">
+                    <span class="action collapse">
+            Colapsar
+                    </span>
+                            <span class="action expand">
+            Expandir
+                    </span>
+                            <span class="action requery">
+            Reconsultar
+                    </span>
+                            <span class="action edit">
+            Editar
+                    </span>
+                            <span class="action explain">
+            Explicar
+                    </span>
+                            <span class="action profiling">
+            Perfilando
+                    </span>
+                            <span class="action bookmark">
+            Agregar a favoritos
+                    </span>
+                            <span class="text failed">
+            Falló la consulta
+                    </span>
+                            <span class="text targetdb">
+            Base de datos
+                            : <span>repositorio</span>
+                    </span>
+                            <span class="text query_time">
+            Fecha y hora la consulta
+                            : <span>durante la sesión actual</span>
+                    </span>
+            </div>
+                            <span class="query">SELECT * FROM `documentos`</span>
                         </div>
                                                 </div><!-- console_message_container -->
             <div class="query_input">
