@@ -1,3 +1,7 @@
+<?
+//include "includes/db.php";
+include "includes/documento.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +23,6 @@
         $nombreUsuario = $_SESSION["nombreUsuario"];
         echo "Bienvenido/a " . $nombreUsuario;
     } else {
-        // El usuario no ha iniciado sesión, puedes mostrar un mensaje o redirigirlo al inicio de sesión
     }
     ?> 
     </div>

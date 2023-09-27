@@ -1,24 +1,13 @@
 <?php
-// Conectar a la base de datos (debes configurar esto)
-$servername = "localhost:3307";
-$username = "root";
-$password = "";
-$dbname = "repositorio";
+include "includes/db.php";
+include "includes/documento.php";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Verificar la conexión
-if ($conn->connect_error) {
-    die("La conexión a la base de datos falló: " . $conn->connect_error);
-}
-
-// Obtener datos del formulario
 $titulo = $_POST["titulo"];
 $autor = $_POST["autor"];
 $categoria = $_POST["categoria"];
 $carrera = $_POST["carrera"];
 
-// Procesar la carga del archivo
+
 $archivoNombre = $_FILES["archivo"]["name"];
 $archivoTemporal = $_FILES["archivo"]["tmp_name"];
 $archivoDestino = "uploads/" . $archivoNombre;
