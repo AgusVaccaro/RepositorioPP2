@@ -1,7 +1,6 @@
 <?php
 require_once "includes/db.php";
 
-// Obtener las carreras únicas de la base de datos
 $sql_carreras = "SELECT DISTINCT carrera FROM documentos";
 $result_carreras = $conn->query($sql_carreras);
 $carreras = array();
@@ -62,7 +61,6 @@ if ($result_carreras->num_rows > 0) {
         <h1>Documentos en el Repositorio Académico</h1>
         <a href="index.php" class="return-button">Volver a inicio</a>
 
-        <!-- Pestañas para alternar entre las carreras -->
         <div id="carreras-tabs">
             <?php
             foreach ($carreras as $carrera) {
@@ -71,14 +69,14 @@ if ($result_carreras->num_rows > 0) {
             ?>
         </div>
 
-        <!-- Contenedor de documentos -->
+
         <div class="documentos-container" id="documentos-container">
-            <!-- Documentos se cargarán aquí -->
+
         </div>
     </center>
 
     <script>
-        // Script para alternar entre carreras al hacer clic en las pestañas
+
         const carrerasTabs = document.querySelectorAll(".carreras-tab");
         const documentosContainer = document.getElementById("documentos-container");
 
@@ -86,13 +84,12 @@ if ($result_carreras->num_rows > 0) {
             tab.addEventListener("click", () => {
                 const carrera = tab.getAttribute("data-carrera");
 
-                // Remover la clase "active" de todas las pestañas
+
                 carrerasTabs.forEach(t => t.classList.remove("active"));
 
-                // Agregar la clase "active" a la pestaña seleccionada
                 tab.classList.add("active");
 
-                // Cargar documentos de la carrera seleccionada
+
                 loadDocumentsByCarrera(carrera);
             });
         });
@@ -100,7 +97,7 @@ if ($result_carreras->num_rows > 0) {
         // Función para cargar documentos de una carrera específica
         function loadDocumentsByCarrera(carrera) {
             const xhr = new XMLHttpRequest();
-            xhr.open("GET", `includes/get_documents_by_carrera.php?carrera=${carrera}`, true);
+            xhr.open("GET", `includes/doc_por_carrera.php?carrera=${carrera}`, true);
 
             xhr.onload = function () {
                 if (xhr.status === 200) {

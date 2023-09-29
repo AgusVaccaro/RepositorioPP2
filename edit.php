@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     // Ejecuta una consulta SQL UPDATE para actualizar los detalles del documento en la base de datos
-    $sql = "UPDATE documentos SET titulo = ?, autor = ?, categoria = ?, carrera = ? WHERE id = ?";
+    $sql = "UPDATE documentos SET titulo = ?, autor = ?, categoria = ?,  materia = ?, carrera = ? WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("sssssi", $nuevo_titulo, $nuevo_autor, $nueva_categoria, $nueva_materia, $nueva_carrera, $id);
 
@@ -46,9 +46,11 @@ $conn->close();
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- Encabezado HTML y enlaces a CSS/JS aquí -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <center>
     <h1>Editar Documento</h1>
 
     <?php if (isset($error)) { echo "<p>Error: $error</p>"; } ?>
@@ -66,9 +68,11 @@ $conn->close();
         <input type="text" name="nueva_materia" value="<?php echo $row["materia"]; ?>" required><br>
         <label for="nueva_carrera">Nueva Carrera:</label>
         <input type="text" name="nueva_carrera" value="<?php echo $row["carrera"]; ?>" required><br>
-        <input type="submit" value="Guardar Cambios">
+        <center>
+        <input type="submit" value="Guardar Cambios"> </center>
     </form>
 
     <a href="documents.php">Volver a la Lista de Documentos</a>
+    </center>
 </body>
 </html>

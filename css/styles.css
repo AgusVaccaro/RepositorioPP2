@@ -1,24 +1,14 @@
-/* Resetear los estilos predeterminados del navegador */
-body, h1, h3 {
-    margin: 0;
-    padding: 0;
-}
-
 /* Estilo para el encabezado */
 .header {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px;
+    background-color: #343a40;
+    color: white;
     text-align: center;
+    padding: 20px;
 }
 
 .header h1 {
-    font-size: 24px;
-    margin-bottom: 5px;
-}
-
-.header h3 {
-    font-size: 18px;
+    margin: 0;
+    padding: 0;
 }
 
 /* Estilo para la barra de navegación */
@@ -26,26 +16,60 @@ body, h1, h3 {
     background-color: #343a40;
 }
 
-.navbar-dark .navbar-nav .nav-link {
-    color: #fff;
+.navbar a {
+    color: white !important;
 }
 
-/* Estilo para el enlace "Cerrar Sesión" */
-.container a {
-    color: #007bff;
-    text-decoration: none;
-    margin-top: 10px;
-    display: inline-block;
+/* Estilo para el formulario de inicio de sesión */
+form {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f8f9fa;
+    text-align: left;
 }
 
-.container a:hover {
-    text-decoration: underline;
+form label {
+    display: block;
+    margin-bottom: 10px;
 }
 
-.document-container {
-    width: 200px; /* Ancho deseado para cada recuadro de documento */
-    margin: 10px; /* Espacio entre los recuadros de documento */
+form input[type="text"],
+form input[type="password"] {
+    width: 100%;
     padding: 10px;
-    border: 1px solid #ccc; /* Borde para el recuadro */
-    text-align: center; /* Centra el contenido en el recuadro */
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+}
+
+form input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Estilo para el enlace "Continuar sin iniciar sesión" */
+form a {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    text-decoration: none;
+    color: #007bff;
+}
+
+/* Estilo para los mensajes de error */
+.error {
+    color: #ff0000;
+}
+
+/* Estilo para el enlace "Volver a la Lista de Documentos" */
+a {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    text-decoration: none;
+    color: #007bff;
 }

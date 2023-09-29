@@ -35,6 +35,7 @@ include "includes/documento.php";
             echo "<h3>" . $row["titulo"] . "</h3>";
             echo "<p><strong>Autor:</strong> " . $row["autor"] . "</p>";
             echo "<p><strong>Categoría:</strong> " . $row["categoria"] . "</p>";
+            echo "<p><strong>Categoría:</strong> " . $row["categoria"] . "</p>";
             echo "<p><strong>Carrera:</strong> " . $row["carrera"] . "</p>";
 
             echo '<div class="pdf-viewer">';

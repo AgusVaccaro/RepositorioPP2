@@ -1,5 +1,16 @@
 <?php
-require_once "includes/db.php"; 
+require_once "includes/db.php";
+
+$sql_carreras = "SELECT DISTINCT carrera FROM documentos";
+$result_carreras = $conn->query($sql_carreras);
+$carreras = array();
+
+if ($result_carreras->num_rows > 0) {
+    while ($row_carrera = $result_carreras->fetch_assoc()) {
+        $carreras[] = $row_carrera["carrera"];
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -10,11 +21,16 @@ require_once "includes/db.php";
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.js"></script>
     <style>
-        /* Agrega estilos CSS personalizados aquí */
+        .documentos-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Mosaico con ancho mínimo de 250px */
+            grid-gap: 20px; /* Espacio entre los documentos */
+            justify-items: center;
+            align-items: start; /* Asegura la alineación superior */
+        }
+
         .documento {
-            display: inline-block;
-            width: 25%; /* Ancho del contenedor de documento */
-            margin: 10px;
+            width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
             text-align: center;
@@ -23,70 +39,75 @@ require_once "includes/db.php";
         .pdf-viewer {
             max-width: 100%;
         }
+
+        .return-button {
+            margin-bottom: 20px;
+        }
+
+        /* Estilos para las pestañas de carreras */
+        .carreras-tab {
+            display: inline-block;
+            margin: 10px;
+            cursor: pointer;
+        }
+
+        .carreras-tab.active {
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
     <center>
-    <h1>Documentos en el Repositorio Académico</h1>
+        <h1>Documentos en el Repositorio Académico</h1>
+        <a href="admin.php" class="return-button">Volver a inicio</a><br>
+        <a href="cargardoc.php" class="button">Cargar documento</a>
 
-    <?php
-    $sql = "SELECT id, titulo, autor, categoria, carrera, archivo FROM documentos";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        // Comienza un div contenedor de documentos
-        echo '<div class="documentos-container">';
-        
-        while ($row = $result->fetch_assoc()) {
-            // Comienza un div para cada documento
-            echo '<div class="documento">';
-            echo "<h3>" . $row["titulo"] . "</h3>";
-            echo "<p><strong>Autor:</strong> " . $row["autor"] . "</p>";
-            echo "<p><strong>Categoría:</strong> " . $row["categoria"] . "</p>";
-            echo "<p><strong>Carrera:</strong> " . $row["carrera"] . "</p>";
-            
-            // Agregar el visor PDF.js
-            echo '<div class="pdf-viewer">';
-            echo '<canvas id="pdfViewer' . $row["id"] . '"></canvas>';
-            echo '</div>';
-            
-            echo "<p><a href='uploads/" . $row["archivo"] . "' target='_blank'>Descargar</a></p>";
-            echo "<p><a href='edit.php?id=" . $row["id"] . "'>Editar documento</a></p>";
-            echo "<p><a href='delete.php?id=" . $row["id"] . "'>Eliminar</a></p>"; 
-            // Cierra el div del documento
-            echo '</div>';
-        }
+        <div id="carreras-tabs">
+            <?php
+            foreach ($carreras as $carrera) {
+                echo '<span class="carreras-tab" data-carrera="' . $carrera . '">' . $carrera . '</span>';
+            }
+            ?>
+        </div>
 
 
-        echo '</div>';
-    } else {
-        echo "No se encontraron documentos."; 
-        echo '<a href="cargardoc.php"> Cargar documento </a>';
-    }
+        <div class="documentos-container" id="documentos-container">
 
-    $conn->close();
-    echo '<br><a href="cargardoc.php">Cargar documento</a>';
-    echo '<br><a href="admin.php">Volver a inicio</a>';
-    ?>
+        </div>
+    </center>
 
     <script>
 
-        <?php
-        $result = $conn->query($sql);
-        while ($row = $result->fetch_assoc()) {
-            echo "PDFJS.getDocument('uploads/" . $row["archivo"] . "').promise.then(function(pdf) {";
-            echo "pdf.getPage(1).then(function(page) {";
-            echo "var canvas = document.getElementById('pdfViewer" . $row["id"] . "');";
-            echo "var context = canvas.getContext('2d');";
-            echo "var viewport = page.getViewport({ scale: 1 });";
-            echo "canvas.width = viewport.width;";
-            echo "canvas.height = viewport.height;";
-            echo "page.render({ canvasContext: context, viewport: viewport });";
-            echo "});";
-            echo "});";
+        const carrerasTabs = document.querySelectorAll(".carreras-tab");
+        const documentosContainer = document.getElementById("documentos-container");
+
+        carrerasTabs.forEach(tab => {
+            tab.addEventListener("click", () => {
+                const carrera = tab.getAttribute("data-carrera");
+
+
+                carrerasTabs.forEach(t => t.classList.remove("active"));
+
+                tab.classList.add("active");
+
+
+                loadDocumentsByCarrera(carrera);
+            });
+        });
+
+        // Función para cargar documentos de una carrera específica
+        function loadDocumentsByCarrera(carrera) {
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", `includes/doc_por_carrera_adm.php?carrera=${carrera}`, true);
+
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    documentosContainer.innerHTML = xhr.responseText;
+                }
+            };
+
+            xhr.send();
         }
-        ?>
     </script>
-    </center>
 </body>
 </html>

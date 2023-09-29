@@ -22,8 +22,8 @@ if (isset($_GET['carrera'])) {
             echo '<div class="pdf-viewer">';
             echo '<iframe src="uploads/' . $row["archivo"] . '" frameborder="0"></iframe>';
             echo '</div>';
-
-            echo "<p><a href='uploads/" . $row["archivo"] . "' target='_blank'>Descargar</a></p>";
+            echo "<p><a href='edit.php?id=" . $row["id"] . "'>Editar documento</a></p>";
+            echo "<p><a href='delete.php?id=" . $row["id"] . "'>Eliminar</a></p>"; 
             echo '</div>';
         }
     } else {
