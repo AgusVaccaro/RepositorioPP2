@@ -4,7 +4,6 @@ require_once "db.php";
 if (isset($_GET['carrera'])) {
     $carrera = $_GET['carrera'];
 
-    // Consulta SQL para obtener los documentos de la carrera seleccionada
     $sql = "SELECT id, titulo, autor, categoria, materia, archivo FROM documentos WHERE carrera = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $carrera);

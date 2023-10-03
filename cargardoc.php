@@ -2,16 +2,18 @@
 include "includes/documento.php"; 
 require_once "includes/db.php";
 
+$carreraSeleccionada = '';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $titulo = $_POST["titulo"];
     $autor = $_POST["autor"];
     $categoria = $_POST["categoria"];
-    $carrera = $_POST["carrera"];
+    $carreraSeleccionada = $_POST["carrera"]; 
     $archivoNombre = $_FILES["archivo"]["name"];
     $archivoTemporal = $_FILES["archivo"]["tmp_name"];
     $materia = $_POST["materia"];
 
-    $documento = new Documento(null, $titulo, null, $autor, $categoria, null, $archivoNombre, $materia, $carrera);
+    $documento = new Documento(null, $titulo, null, $autor, $categoria, null, $archivoNombre, $materia, $carreraSeleccionada);
 
     $resultado = $documento->cargarDocumento($archivoTemporal);
     
@@ -28,8 +30,93 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cargar Documento - Repositorio Académico</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Cargar Documento en el Repositorio</h1>
+        <form method="post" action="cargardoc.php" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="titulo">Título:</label>
+                <input type="text" class="form-control" name="titulo" required>
+            </div>
+            <div class="form-group">
+                <label for="autor">Autor(es):</label>
+                <select name="autor[]" id="autor" class="form-control" required multiple>
+                </select>
+                <small class="form-text text-muted">Mantén presionada la tecla Ctrl para seleccionar múltiples autores.</small>
+            </div>
+            <div class="form-group">
+                <label for="categoria">Categoría:</label>
+                <select type="text" class="form-control" name="categoria" required>
+                    <option value="TP FINAL">Trabajo práctico final</option>
+                    <option value="Desarrollo">Desarrollo</option>
+                    <option value="Investigacion">Investigación</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="carrera">Carrera:</label>
+                <select name="carrera" id="carrera" class="form-control" required onchange="actualizarAlumnosPorCarrera()">
+                    <option value="DS">Desarrollo de Software</option>
+                    <option value="AF">Análisis Funcional de Sistemas</option>
+                    <option value="ITI">Infraestructura de Tecnologías de la Información</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="anio">Año Cursado:</label>
+                <select name="anio" id="anio" class="form-control" onchange="actualizarMaterias()" required>
+                    <option value="1er Año">1er Año</option>
+                    <option value="2do Año">2do Año</option>
+                    <option value="3er Año">3er Año</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="materia">Materia:</label>
+                <select name="materia" id="materia" class="form-control" required>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="archivo">Archivo PDF:</label>
+                <input type="file" class="form-control-file" name="archivo" accept=".pdf" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Cargar</button>
+        </form>
+        <br>
+        <a href="documents.php" class="btn btn-secondary">Ver Documentos</a>
+        <a href="admin.php" class="btn btn-secondary">Volver a inicio</a>
+    </div>
+
     <script>
+        
+        function actualizarAlumnosPorCarrera() {
+            var carreraSeleccionada = document.getElementById("carrera").value;
+
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "alumno.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var alumnosSelect = document.getElementById("autor");
+                    
+                    alumnosSelect.innerHTML = "";
+                    
+                    var alumnos = JSON.parse(xhr.responseText);
+                    
+                    for (var i = 0; i < alumnos.length; i++) {
+                        var alumno = alumnos[i];
+                        var option = document.createElement("option");
+                        option.text = alumno.nombre + " " + alumno.apellido;
+                        option.value = alumno.nombre + " " + alumno.apellido;
+                        alumnosSelect.appendChild(option);
+                    }
+                }
+            };
+            xhr.send("carrera=" + carreraSeleccionada);
+        }
+
+        
+
         function actualizarMaterias() {
             var carrera = document.getElementById("carrera").value;
             var anio = document.getElementById("anio").value;
@@ -79,56 +166,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     </script>
-</head>
-<body>
-    <center>
-    <h1>Cargar Documento en el Repositorio</h1>
-    <form method="post" action="cargardoc.php" enctype="multipart/form-data">
-        <label for="titulo">Título:</label>
-        <input type="text" name="titulo" required><br>
-        <label for="autor">Autor:</label>
-        <select name="autor" required>
-            <?php
-            $consultaAlumnos = "SELECT nombre, apellido FROM alumnos";
-            $resultadoAlumnos = $conn->query($consultaAlumnos);
-
-            while ($filaAlumno = $resultadoAlumnos->fetch_assoc()) {
-                $nombreAlumno = $filaAlumno["nombre"];
-                $apellidoAlumno = $filaAlumno["apellido"];
-                $nombreCompleto = $nombreAlumno . ' ' . $apellidoAlumno;
-                echo '<option value="' . $nombreCompleto . '">' . $nombreCompleto . '</option>';
-            }
-            ?>
-        </select><br>
-        <label for="categoria">Categoría:</label>
-        <input type="text" name="categoria" required><br>
-        <label for="carrera">Carrera:</label>
-        <select name="carrera" id="carrera" required onchange="actualizarMaterias()">
-            <option value="DS">Desarrollo de Software</option>
-            <option value="AF">Analisis Funcional de Sistemas</option>
-            <option value="ITI">Infraestructura de Tecnologías de la Información</option>
-        </select><br>
-
-        <!-- Campo de selección para el año cursado -->
-        <label for="anio">Año Cursado:</label>
-        <select name="anio" id="anio" onchange="actualizarMaterias()" required>
-            <option value="1er Año">1er Año</option>
-            <option value="2do Año">2do Año</option>
-            <option value="3er Año">3er Año</option>
-        </select><br>
-
-        <label for="materia">Materia:</label>
-        <select name="materia" id="materia" required>
-            <!-- Las opciones de materia se generarán dinámicamente usando JavaScript -->
-        </select><br>
-
-        <label for="archivo">Archivo PDF:</label>
-        <input type="file" name="archivo" accept=".pdf" required><br>
-        <input type="submit" value="Cargar">
-    </form>
-
-    <br><a href="documents.php">Ver Documentos</a>
-    <br><a href="admin.php">Volver a inicio</a>
-    </center>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
 include "includes/db.php";
-include "requires/documento.php"; 
+include "includes/documento.php"; 
 
 if (isset($_GET["id"])) {
     $documentoID = $_GET["id"];
@@ -11,6 +11,7 @@ if (isset($_GET["id"])) {
     $resultado = $documento->eliminarDocumento();
     
     echo $resultado;
+    header("Location: documents.php"); 
 }
 ?>
 

@@ -1,6 +1,26 @@
-.password-icon {
-    float: right;
+.password-container {
     position: relative;
-    margin: -25px 10px 0 0;
+}
+
+.password1 {
+    width: 100%;
+    padding-right: 40px; 
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.password-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
     cursor: pointer;
+    color: #888;
+    transition: color 0.3s ease;
+}
+
+.password-icon:hover {
+    color: #333; 
 }

@@ -65,23 +65,24 @@ class Documento {
         if (!is_uploaded_file($archivoTemporal)) {
             return "Error: No se ha subido el archivo correctamente.";
         }
-
+    
         $directorioDestino = "uploads/";
         $archivoDestino = $directorioDestino . $this->archivo;
-
+    
         if (!move_uploaded_file($archivoTemporal, $archivoDestino)) {
             return "Error: No se pudo mover el archivo al destino.";
         }
-
+    
         $conn = conexionDB();
-
+    
+        $autores = implode(", ", $this->autor); 
+    
         $sql = "INSERT INTO documentos (titulo, autor, categoria, archivo, materia, carrera, fecha_de_carga) VALUES (?, ?, ?, ?, ?, ?, NOW())";
-
+    
         $stmt = $conn->prepare($sql);
-
-        $stmt->bind_param("ssssss", $this->titulo, $this->autor, $this->categoria, $this->archivo, $this->materia, $this->carrera);
-
-
+    
+        $stmt->bind_param("ssssss", $this->titulo, $autores, $this->categoria, $this->archivo, $this->materia, $this->carrera);
+    
         if ($stmt->execute()) {
             $stmt->close();
             $conn->close();
@@ -96,35 +97,35 @@ class Documento {
     public function eliminarDocumento() {
         $conn = conexionDB();
 
-        // Consulta SQL para obtener el nombre del archivo y el id
+
         $sql = "SELECT archivo FROM documentos WHERE id = ?";
         $stmt = $conn->prepare($sql);
 
-        // Asigna el valor del id al parámetro
+
         $stmt->bind_param("i", $this->id);
 
-        // Ejecuta la consulta
+
         $stmt->execute();
 
-        // Vincula el resultado a una variable
+  
         $stmt->bind_result($archivo);
         $stmt->fetch();
         $stmt->close();
 
-        // Elimina el registro de la base de datos
+
         $sql = "DELETE FROM documentos WHERE id = ?";
         $stmt = $conn->prepare($sql);
 
-        // Asigna el valor del id al parámetro
+
         $stmt->bind_param("i", $this->id);
 
-        // Ejecuta la eliminación
+
         if ($stmt->execute()) {
-            // Cierra la conexión
+
             $stmt->close();
             $conn->close();
 
-            // Elimina el archivo del sistema de archivos
+
             $directorioDestino = "uploads/";
             $archivoDestino = $directorioDestino . $archivo;
 

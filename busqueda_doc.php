@@ -17,7 +17,6 @@ include "includes/documento.php";
     <?php
     $search_query = $_GET['q'];
 
-    // Consulta SQL para buscar documentos que coincidan con la búsqueda
     $sql = "SELECT id, titulo, autor, categoria, carrera, archivo FROM documentos WHERE 
             titulo LIKE '%$search_query%' OR
             autor LIKE '%$search_query%' OR
@@ -30,7 +29,7 @@ include "includes/documento.php";
         echo '<div class="documentos-container">';
         
         while ($row = $result->fetch_assoc()) {
-            // Comienza un div para cada documento (esto puede ser similar a tu código anterior)
+
             echo '<div class="documento">';
             echo "<h3>" . $row["titulo"] . "</h3>";
             echo "<p><strong>Autor:</strong> " . $row["autor"] . "</p>";

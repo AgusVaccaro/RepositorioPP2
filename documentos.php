@@ -18,15 +18,15 @@ if ($result_carreras->num_rows > 0) {
 <head>
     <title>Documentos - Repositorio Académico</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.js"></script>
     <style>
         .documentos-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Mosaico con ancho mínimo de 250px */
-            grid-gap: 20px; /* Espacio entre los documentos */
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+            grid-gap: 20px; 
             justify-items: center;
-            align-items: start; /* Asegura la alineación superior */
+            align-items: start; 
         }
 
         .documento {
@@ -44,7 +44,6 @@ if ($result_carreras->num_rows > 0) {
             margin-bottom: 20px;
         }
 
-        /* Estilos para las pestañas de carreras */
         .carreras-tab {
             display: inline-block;
             margin: 10px;
@@ -55,6 +54,7 @@ if ($result_carreras->num_rows > 0) {
             font-weight: bold;
         }
     </style>
+    
 </head>
 <body>
     <center>
@@ -94,7 +94,6 @@ if ($result_carreras->num_rows > 0) {
             });
         });
 
-        // Función para cargar documentos de una carrera específica
         function loadDocumentsByCarrera(carrera) {
             const xhr = new XMLHttpRequest();
             xhr.open("GET", `includes/doc_por_carrera.php?carrera=${carrera}`, true);
