@@ -11,8 +11,9 @@ class Documento {
     private $archivo;
     private $materia;
     private $carrera;
+    private $fecha_creacion;
 
-    public function __construct($id, $titulo, $usuario_id, $autor, $categoria, $fecha_de_carga, $archivo, $materia, $carrera) {
+    public function __construct($id, $titulo, $usuario_id, $autor, $categoria, $fecha_de_carga, $archivo, $materia, $carrera, $fecha_creacion) {
         $this->id = $id;
         $this->titulo = $titulo;
         $this->usuario_id = $usuario_id;
@@ -22,6 +23,7 @@ class Documento {
         $this->archivo = $archivo;
         $this->materia = $materia; 
         $this->carrera = $carrera;
+        $this->fecha_creacion = $fecha_creacion;
     }
     
 
@@ -61,27 +63,32 @@ class Documento {
         return $this->carrera;
     }
 
+    public function getFecha_Creacion() {
+        return $this->fecha_creacion;
+    }
+
     public function cargarDocumento($archivoTemporal) {
         if (!is_uploaded_file($archivoTemporal)) {
             return "Error: No se ha subido el archivo correctamente.";
         }
-
+    
         $directorioDestino = "uploads/";
         $archivoDestino = $directorioDestino . $this->archivo;
-
+    
         if (!move_uploaded_file($archivoTemporal, $archivoDestino)) {
             return "Error: No se pudo mover el archivo al destino.";
         }
-
+    
         $conn = conexionDB();
-
-        $sql = "INSERT INTO documentos (titulo, autor, categoria, archivo, materia, carrera, fecha_de_carga) VALUES (?, ?, ?, ?, ?, ?, NOW())";
-
+    
+        $autores = implode(', ', $this->autor);
+    
+        $sql = "INSERT INTO documentos (titulo, autor, categoria, archivo, materia, carrera, fecha_de_carga, fecha_creacion) VALUES (?, ?, ?, ?, ?, ?, NOW(), ?)";
+    
         $stmt = $conn->prepare($sql);
-
-        $stmt->bind_param("ssssss", $this->titulo, $this->autor, $this->categoria, $this->archivo, $this->materia, $this->carrera);
-
-
+    
+        $stmt->bind_param("sssssss", $this->titulo, $autores, $this->categoria, $this->archivo, $this->materia, $this->carrera, $this->fecha_creacion);
+    
         if ($stmt->execute()) {
             $stmt->close();
             $conn->close();
@@ -96,35 +103,35 @@ class Documento {
     public function eliminarDocumento() {
         $conn = conexionDB();
 
-        // Consulta SQL para obtener el nombre del archivo y el id
+
         $sql = "SELECT archivo FROM documentos WHERE id = ?";
         $stmt = $conn->prepare($sql);
 
-        // Asigna el valor del id al parámetro
+
         $stmt->bind_param("i", $this->id);
 
-        // Ejecuta la consulta
+
         $stmt->execute();
 
-        // Vincula el resultado a una variable
+  
         $stmt->bind_result($archivo);
         $stmt->fetch();
         $stmt->close();
 
-        // Elimina el registro de la base de datos
+
         $sql = "DELETE FROM documentos WHERE id = ?";
         $stmt = $conn->prepare($sql);
 
-        // Asigna el valor del id al parámetro
+
         $stmt->bind_param("i", $this->id);
 
-        // Ejecuta la eliminación
+
         if ($stmt->execute()) {
-            // Cierra la conexión
+
             $stmt->close();
             $conn->close();
 
-            // Elimina el archivo del sistema de archivos
+
             $directorioDestino = "uploads/";
             $archivoDestino = $directorioDestino . $archivo;
 

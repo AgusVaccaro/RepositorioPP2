@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión - Repositorio Académico</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="pass.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/pass.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="icon" type="image/jpg" href="img/favicon.gif"/>
 </head>
 <body>
     <center>
@@ -16,11 +18,14 @@
         <label for="nombreUsuario">Nombre de Usuario:</label>
         <input type="text" name="nombreUsuario" required><br>
         <label for="contrasena">Contraseña:</label>
-        <input type="password" name="contrasena" required><br>
+        <div class="password-container">
+            <input type="password" name="contrasena" class="password1" required>
+            <i class="far fa-eye show-password password-icon"></i>
+        </div>
         <input type="submit" value="Iniciar Sesión"><br><br>
         <a href="index.php">Continuar sin iniciar sesión</a>
     </form>
     </center>
+    <script src="js/pass.js"></script>
 </body>
 </html>
-

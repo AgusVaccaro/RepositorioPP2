@@ -4,8 +4,7 @@ require_once "db.php";
 if (isset($_GET['carrera'])) {
     $carrera = $_GET['carrera'];
 
-    // Consulta SQL para obtener los documentos de la carrera seleccionada
-    $sql = "SELECT id, titulo, autor, categoria, materia, archivo FROM documentos WHERE carrera = ?";
+    $sql = "SELECT id, titulo, autor, categoria, materia, archivo, fecha_creacion FROM documentos WHERE carrera = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $carrera);
     $stmt->execute();
@@ -18,6 +17,7 @@ if (isset($_GET['carrera'])) {
             echo "<p><strong>Autor:</strong> " . $row["autor"] . "</p>";
             echo "<p><strong>Categoría:</strong> " . $row["categoria"] . "</p>";
             echo "<p><strong>Materia:</strong> " . $row["materia"] . "</p>";
+            echo "<p><strong>Fecha de creación:</strong> " . $row["fecha_creacion"] . "</p>";
 
             echo '<div class="pdf-viewer">';
             echo '<iframe src="uploads/' . $row["archivo"] . '" frameborder="0"></iframe>';

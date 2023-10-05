@@ -1,4 +1,4 @@
-/* Estilo para el encabezado */
+
 .header {
     background-color: #343a40;
     color: white;
@@ -11,7 +11,7 @@
     padding: 0;
 }
 
-/* Estilo para la barra de navegación */
+
 .navbar {
     background-color: #343a40;
 }
@@ -20,7 +20,7 @@
     color: white !important;
 }
 
-/* Estilo para el formulario de inicio de sesión */
+
 form {
     width: 300px;
     margin: 0 auto;
@@ -51,7 +51,7 @@ form input[type="submit"] {
     cursor: pointer;
 }
 
-/* Estilo para el enlace "Continuar sin iniciar sesión" */
+
 form a {
     display: block;
     text-align: center;
@@ -60,12 +60,12 @@ form a {
     color: #007bff;
 }
 
-/* Estilo para los mensajes de error */
+
 .error {
     color: #ff0000;
 }
 
-/* Estilo para el enlace "Volver a la Lista de Documentos" */
+
 a {
     display: block;
     text-align: center;

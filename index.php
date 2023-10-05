@@ -7,6 +7,7 @@
     <title>Repositorio Académico</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/jpg" href="img/favicon.gif"/>
 </head>
 <body>
     
@@ -24,17 +25,36 @@
     </div>
     
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="documentos.php">Ver Documentos</a>
-                </li>
-            </ul>
-        </div>                                                       
+    <div class="container d-flex justify-content-between">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="documentos.php">Ver Documentos</a>
+            </li>
+        </ul>
+        <a class="nav-link" href="#">Volver a página principal</a>
+    </div>                                                       
     </nav>
     
     <div class="container">
     <a href="iniciarses.php">Iniciar Sesión</a> 
+
+    <div class="container">
+    <div class="row">
+        <div class="col">
+            <img src="img/af.jpg" alt="Imagen 1" class="img-fluid">
+        </div>
+        <div class="col">
+            <img src="img/ds.jpg" alt="Imagen 2" class="img-fluid">
+        </div>
+        <div class="col">
+            <img src="img/iti.jpg" alt="Imagen 3" class="img-fluid">
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
       
     </div>
 </body>
