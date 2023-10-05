@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3307
--- Tiempo de generación: 03-10-2023 a las 02:08:40
+-- Tiempo de generación: 05-10-2023 a las 06:19:15
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.5
 
@@ -95,25 +95,27 @@ CREATE TABLE `documentos` (
   `fecha_de_carga` date NOT NULL,
   `archivo` varchar(255) NOT NULL,
   `carrera` varchar(255) DEFAULT NULL,
-  `materia` varchar(255) NOT NULL
+  `materia` varchar(255) NOT NULL,
+  `fecha_creacion` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `documentos`
 --
 
-INSERT INTO `documentos` (`id`, `titulo`, `usuario_id`, `autor`, `categoria`, `fecha_de_carga`, `archivo`, `carrera`, `materia`) VALUES
-(34, 'TP FINAL ', NULL, 'Agustín Vaccaro', 'FINAL', '2023-09-27', 'Menegozzi-Vaccaro. Tematica y Alcances.pdf', 'DS', 'Bases de Datos'),
-(36, 'Redes LAN', NULL, 'Axel Menegozzi', 'Trabajo Práctico', '2023-09-28', 'Menegozzi-Vaccaro. Tematica y Alcances.pdf', 'DS', 'Redes y Comunicacion'),
-(37, 'TP', NULL, 'Agustín Vaccaro', 'TP FINAL', '2023-09-28', 'Menegozzi-Vaccaro. Tematica y Alcances.pdf', 'DS', 'Adminstración'),
-(38, 'FINAL', NULL, 'Axel Menegozzi', 'TP FINAL', '2023-09-28', '49_Estructura_Curricular_hs_formato.pdf', 'ITI', 'Infraestructura de Redes 2'),
-(39, 'RIJJU', NULL, 'Agustín Vaccaro', 'Desarrollo de Sitio Web', '2023-09-29', '49_Estructura_Curricular_hs_formato.pdf', 'DS', 'Práctica Profesionalizante II'),
-(40, 'TP FINAL BBDD', NULL, 'Axel Menegozzi', 'TP FINAL', '2023-10-02', 'Axel Menegozzi - Agustín Vaccaro. Entorno gráfico.pdf', 'ITI', 'Bases de Datos'),
-(41, 'TP ESTADÍSTICA', NULL, 'Axel Menegozzi', 'Trabajo Práctico', '2023-10-02', 'Axel Menegozzi - Agustín Vaccaro. Entorno gráfico.pdf', 'AF', 'Estadística'),
-(42, 'TP FINAL BBDD', NULL, 'Lucas Rodriguez', 'TP FINAL', '2023-10-02', 'Axel Menegozzi - Agustín Vaccaro. Entorno gráfico.pdf', 'ITI', 'Bases de Datos'),
-(43, 'Noticiapp', NULL, 'Agustín Vaccaro', 'Desarrollo de App', '2023-10-02', 'Axel Menegozzi - Agustín Vaccaro. Entorno gráfico.pdf', 'DS', 'Programación II'),
-(45, 'TP Programacion', NULL, 'Lucas Rodriguez, Facundo Ferreyra', 'TP FINAL', '2023-10-02', 'Axel Menegozzi - Agustín Vaccaro. Entorno gráfico.pdf', 'ITI', 'Lógica y Programación'),
-(47, 'Alertapp', NULL, 'Agustín Vaccaro, Axel Menegozzi', 'Desarrollo de App', '2023-10-02', 'Axel Menegozzi - Agustín Vaccaro. Entorno gráfico.pdf', 'DS', 'Práctica Profesionalizante');
+INSERT INTO `documentos` (`id`, `titulo`, `usuario_id`, `autor`, `categoria`, `fecha_de_carga`, `archivo`, `carrera`, `materia`, `fecha_creacion`) VALUES
+(34, 'TP FINAL ', NULL, 'Agustín Vaccaro', 'FINAL', '2023-09-27', 'Menegozzi-Vaccaro. Tematica y Alcances.pdf', 'DS', 'Bases de Datos', '2023-10-01'),
+(36, 'Redes LAN', NULL, 'Axel Menegozzi', 'Trabajo Práctico', '2023-09-28', 'Menegozzi-Vaccaro. Tematica y Alcances.pdf', 'DS', 'Redes y Comunicacion', '2023-07-04'),
+(37, 'TP', NULL, 'Agustín Vaccaro', 'TP FINAL', '2023-09-28', 'Menegozzi-Vaccaro. Tematica y Alcances.pdf', 'DS', 'Adminstración', '2023-10-05'),
+(38, 'FINAL', NULL, 'Axel Menegozzi', 'TP FINAL', '2023-09-28', '49_Estructura_Curricular_hs_formato.pdf', 'ITI', 'Infraestructura de Redes 2', '2023-09-01'),
+(39, 'RIJJU', NULL, 'Agustín Vaccaro', 'Desarrollo de Sitio Web', '2023-09-29', '49_Estructura_Curricular_hs_formato.pdf', 'DS', 'Práctica Profesionalizante II', '2023-10-03'),
+(41, 'TP ESTADÍSTICA', NULL, 'Axel Menegozzi', 'Trabajo Práctico', '2023-10-02', 'Axel Menegozzi - Agustín Vaccaro. Entorno gráfico.pdf', 'AF', 'Estadística', '2022-10-27'),
+(42, 'TP FINAL BBDD', NULL, 'Lucas Rodriguez', 'TP FINAL', '2023-10-02', 'Axel Menegozzi - Agustín Vaccaro. Entorno gráfico.pdf', 'ITI', 'Bases de Datos', '2023-10-12'),
+(43, 'Noticiapp', NULL, 'Agustín Vaccaro', 'Desarrollo de App', '2023-10-02', 'Axel Menegozzi - Agustín Vaccaro. Entorno gráfico.pdf', 'DS', 'Programación II', '2023-10-02'),
+(45, 'TP Programacion', NULL, 'Lucas Rodriguez, Facundo Ferreyra', 'TP FINAL', '2023-10-02', 'Axel Menegozzi - Agustín Vaccaro. Entorno gráfico.pdf', 'ITI', 'Lógica y Programación', '2021-10-01'),
+(47, 'Alertapp', NULL, 'Agustín Vaccaro, Axel Menegozzi', 'Desarrollo de App', '2023-10-02', 'Axel Menegozzi - Agustín Vaccaro. Entorno gráfico.pdf', 'DS', 'Práctica Profesionalizante', '2021-11-20'),
+(49, 'TP FINAL ', NULL, 'Ana Rodríguez, Laura Fernández, Santiago Pardo', 'Desarrollo', '2023-10-02', 'Axel Menegozzi - Agustín Vaccaro. Entorno gráfico.pdf', 'ITI', 'Bases de Datos ', '2022-10-05'),
+(79, 'Museum', NULL, 'Gabriel Báez', 'Desarrollo', '2023-10-04', 'Axel Menegozzi - Agustín Vaccaro. Entorno gráfico.pdf', 'DS', 'Práctica Profesionalizante', '2019-11-18');
 
 -- --------------------------------------------------------
 
@@ -184,7 +186,7 @@ ALTER TABLE `carreras`
 -- AUTO_INCREMENT de la tabla `documentos`
 --
 ALTER TABLE `documentos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`

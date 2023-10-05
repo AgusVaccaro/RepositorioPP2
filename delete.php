@@ -5,8 +5,7 @@ include "includes/documento.php";
 if (isset($_GET["id"])) {
     $documentoID = $_GET["id"];
 
-    $documento = new Documento($documentoID, null, null, null, null, null, null, null, null);
-
+    $documento = new Documento($_GET['id'], null, null, null, null, null, null, null, null, null);
 
     $resultado = $documento->eliminarDocumento();
     

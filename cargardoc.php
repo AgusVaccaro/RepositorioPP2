@@ -6,20 +6,23 @@ $carreraSeleccionada = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $titulo = $_POST["titulo"];
-    $autor = $_POST["autor"];
+    $autores = isset($_POST["autores"]) ? $_POST["autores"] : [];
     $categoria = $_POST["categoria"];
-    $carreraSeleccionada = $_POST["carrera"]; 
+    $carreraSeleccionada = $_POST["carrera"];
     $archivoNombre = $_FILES["archivo"]["name"];
     $archivoTemporal = $_FILES["archivo"]["tmp_name"];
     $materia = $_POST["materia"];
+    $autorManual = $_POST["autor_manual"];
+    $fecha_creacion = date("Y-m-d", strtotime($_POST["fecha_creacion"]));
 
-    $documento = new Documento(null, $titulo, null, $autor, $categoria, null, $archivoNombre, $materia, $carreraSeleccionada);
+    $autores = array_merge($autores, [$autorManual]);
+
+    $documento = new Documento(null, $titulo, null, $autores, $categoria, null, $archivoNombre, $materia, $carreraSeleccionada, $fecha_creacion);
 
     $resultado = $documento->cargarDocumento($archivoTemporal);
     
     echo $resultado;
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cargar Documento - Repositorio Académico</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/cargadoc.css">
+    <link rel="icon" type="image/jpg" href="img/favicon.gif"/>
 </head>
 <body>
     <div class="container">
@@ -42,10 +46,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="form-group">
                 <label for="autor">Autor(es):</label>
-                <select name="autor[]" id="autor" class="form-control" required multiple>
+                <select name="autores[]" id="autor" class="form-control" multiple>
                 </select>
-                <small class="form-text text-muted">Mantén presionada la tecla Ctrl para seleccionar múltiples autores.</small>
+                <input type="text" class="form-control" name="autor_manual" placeholder="Ingresa el autor manualmente">
+                <small class="form-text text-muted">Mantén presionada la tecla Ctrl para seleccionar múltiples autores o ingresa manualmente el autor.</small>
             </div>
+
             <div class="form-group">
                 <label for="categoria">Categoría:</label>
                 <select type="text" class="form-control" name="categoria" required>
@@ -76,6 +82,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </select>
             </div>
             <div class="form-group">
+                <label for="fecha_creacion">Fecha de Creación: </label>
+                <input type="date" class="form-control" name="fecha_creacion" required>
+            </div>
+            <div class="form-group">
                 <label for="archivo">Archivo PDF:</label>
                 <input type="file" class="form-control-file" name="archivo" accept=".pdf" required>
             </div>
@@ -93,29 +103,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", "alumno.php", true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var alumnosSelect = document.getElementById("autor");
-                    
-                    alumnosSelect.innerHTML = "";
-                    
-                    var alumnos = JSON.parse(xhr.responseText);
-                    
-                    for (var i = 0; i < alumnos.length; i++) {
-                        var alumno = alumnos[i];
-                        var option = document.createElement("option");
-                        option.text = alumno.nombre + " " + alumno.apellido;
-                        option.value = alumno.nombre + " " + alumno.apellido;
-                        alumnosSelect.appendChild(option);
-                    }
-                }
-            };
-            xhr.send("carrera=" + carreraSeleccionada);
-        }
-
-        
+            var carreraSeleccionada = document.getElementById("carrera").value;
+            var autorSelect = document.getElementById("autor");
+            var autorManualInput = document.querySelector('input[name="autor_manual"]');
+                if (autorManualInput.value.trim() !== "") {
+                    autorSelect.innerHTML = '<option value="' + autorManualInput.value.trim() + '">' + autorManualInput.value.trim() + '</option>';
+                } else {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("POST", "alumno.php", true);
+                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState === 4 && xhr.status === 200) {
+                            var alumnosSelect = document.getElementById("autor");
+                            alumnosSelect.innerHTML = "";
+                            var alumnos = JSON.parse(xhr.responseText);
+                            
+                            for (var i = 0; i < alumnos.length; i++) {
+                                var alumno = alumnos[i];
+                                var option = document.createElement("option");
+                                option.text = alumno.nombre + " " + alumno.apellido;
+                                option.value = alumno.nombre + " " + alumno.apellido;
+                                alumnosSelect.appendChild(option);
+                            }
+                        }
+                    };
+                    xhr.send("carrera=" + carreraSeleccionada);
+    }
+}
 
         function actualizarMaterias() {
             var carrera = document.getElementById("carrera").value;

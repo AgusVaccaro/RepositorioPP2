@@ -9,12 +9,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nueva_categoria = $_POST["nueva_categoria"];
     $nueva_materia = $_POST["nueva_materia"];
     $nueva_carrera = $_POST["nueva_carrera"];
+    $nueva_fecha_creacion = $_POST["nueva_fecha_creacion"];
 
 
 
-    $sql = "UPDATE documentos SET titulo = ?, autor = ?, categoria = ?,  materia = ?, carrera = ? WHERE id = ?";
+    $sql = "UPDATE documentos SET titulo = ?, autor = ?, categoria = ?,  materia = ?, carrera = ?, fecha_creacion = ? WHERE id = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssssi", $nuevo_titulo, $nuevo_autor, $nueva_categoria, $nueva_materia, $nueva_carrera, $id);
+    $stmt->bind_param("ssssssi", $nuevo_titulo, $nuevo_autor, $nueva_categoria, $nueva_materia, $nueva_carrera, $nueva_fecha_creacion, $id);
 
     if ($stmt->execute()) {
 
@@ -50,6 +51,7 @@ $conn->close();
     <title>Editar Documento</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/jpg" href="img/favicon.gif"/>
 </head>
 <body>
     <div class="container">
@@ -90,6 +92,10 @@ $conn->close();
                                     <option value="AF">Analisis Funcional de Sistemas</option>
                                     <option value="ITI">Infraestructura de Tecnologías de la Información</option>
                                 </select>
+                            </div>
+                            <div>
+                                <label for="nueva_fecha_creacion">Modificar fecha de creación:</label>
+                                <input type="date" class="form-control" name="nueva_fecha_creacion" value="<?php echo $row["fecha_creacion"]; ?>" required>
                             </div>
                             <div class="form-group">
                                 <label for="anio">Año Cursado:</label>

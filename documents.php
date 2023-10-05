@@ -19,6 +19,7 @@ if ($result_carreras->num_rows > 0) {
     <title>Documentos - Repositorio Académico</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/jpg" href="img/favicon.gif"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.js"></script>
     <style>
         .documentos-container {
@@ -53,6 +54,12 @@ if ($result_carreras->num_rows > 0) {
         .carreras-tab.active {
             font-weight: bold;
         }
+
+        .documento-date {
+            font-size: 0.8rem;
+            margin-top: 5px;
+            color: #666;
+        }
     </style>
 </head>
 <body>
@@ -62,6 +69,12 @@ if ($result_carreras->num_rows > 0) {
         <a href="cargardoc.php" class="button">Cargar documento</a>
 
         <div id="carreras-tabs">
+            <div class="search-container">
+                <form action="search_admin.php" method="post" enctype="multipart/form-data">
+                    <input type="text" id="search-input" placeholder="Buscar documentos...">
+                    <div class="search-results" id="search-results"></div>
+                </form>
+            </div>
             <?php
             foreach ($carreras as $carrera) {
                 echo '<span class="carreras-tab" data-carrera="' . $carrera . '">' . $carrera . '</span>';
@@ -69,14 +82,10 @@ if ($result_carreras->num_rows > 0) {
             ?>
         </div>
 
-
-        <div class="documentos-container" id="documentos-container">
-
-        </div>
+        <div class="documentos-container" id="documentos-container"></div>
     </center>
 
     <script>
-
         const carrerasTabs = document.querySelectorAll(".carreras-tab");
         const documentosContainer = document.getElementById("documentos-container");
 
@@ -84,11 +93,9 @@ if ($result_carreras->num_rows > 0) {
             tab.addEventListener("click", () => {
                 const carrera = tab.getAttribute("data-carrera");
 
-
                 carrerasTabs.forEach(t => t.classList.remove("active"));
 
                 tab.classList.add("active");
-
 
                 loadDocumentsByCarrera(carrera);
             });
@@ -101,6 +108,28 @@ if ($result_carreras->num_rows > 0) {
             xhr.onload = function () {
                 if (xhr.status === 200) {
                     documentosContainer.innerHTML = xhr.responseText;
+                }
+            };
+
+            xhr.send();
+        }
+
+        const searchInput = document.getElementById("search-input");
+        searchInput.addEventListener("keyup", function () {
+            const query = searchInput.value;
+            if (query.length >= 1) { 
+                performSearch(query);
+            }
+        });
+
+        function performSearch(query) {
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", `search_admin.php?q=${query}`, true);
+
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    const searchResults = document.getElementById("search-results");
+                    searchResults.innerHTML = xhr.responseText;
                 }
             };
 

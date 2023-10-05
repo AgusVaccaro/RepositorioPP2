@@ -11,6 +11,7 @@ include "includes/documento.php";
     <title>Repositorio Académico</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/jpg" href="img/favicon.gif"/>
 </head>
 <body>
     
